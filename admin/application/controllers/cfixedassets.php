@@ -40,6 +40,11 @@ class cfixedassets extends CI_Controller {
 		
 		$a['page']	= "fixedassets";
 		$this->load->view('admin/index', $a);
+		// $OnSite= $this->session->userdata('onsite');
+		// $field = $this->input->get('field');
+		// $clm= $this->input->get('clm');
+		// echo $this->mfixedassets->tampildata($field,$OnSite,$clm);
+
 	}
 	function sample1()
 	{

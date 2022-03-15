@@ -83,13 +83,10 @@ class mfixedassets extends CI_Model {
 		 FROM CTE   where  " .  $and . "   order by Asset desc");
 		foreach($query->result_object() as $rows )
         {
-
             $arr[] = $rows;
 			
         }
-        return  json_encode($arr);
-       
-       
+       return json_encode ($arr, JSON_INVALID_UTF8_SUBSTITUTE);
     }
     public function dtl($Asset)
 	 {
