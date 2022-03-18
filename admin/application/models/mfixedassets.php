@@ -33,7 +33,7 @@ class mfixedassets extends CI_Model {
 			ELSE ''
 		END as LocalOrImport,b.last_movement_date,b.ModifiedDate,
 		a.DocLink,a.BCNo,CAST(a.AllocationDate AS DATE) as AllocationDate,a.ReferenceNo,a.COA,a.Asset,a.Description,
-         a.Description2 ,CAST(a.Quantity as Decimal(18,2)) as Quantity,a.Unit,a.ExcRate,a.AcquisitionCost,a.DepreciationYear,a.Department,a.Section,a.LocationCode,a.ProductionLineCode,a.SerialNo,iif(b.Print_Time < 1, NULL,b.Print_Time) as Print_Time,print_date,c.userID + ' ( ' + c.userName + ' )' as userID ,'unchecked' as chk
+         a.Description2 ,CAST(a.Quantity as Decimal(18,2)) as Quantity,a.Unit,a.ExcRate,a.AcquisitionCost,a.DepreciationYear,a.Department,a.Section,a.LocationCode,a.ProductionLineCode,a.SerialNo,iif(b.Print_Time < 1, NULL,b.Print_Time) as Print_Time,print_date,c.userID + ' ( ' + c.userName + ' )' as userID ,'unchecked' as chk, '' as PhysicalTagNo
          FROM tlowvalue_asset as a left join ttransaction_asset as b ON a.Asset COLLATE DATABASE_DEFAULT = b.asset COLLATE DATABASE_DEFAULT left join mdatauser as c ON b.userID = c.userID 
 
 		union 
@@ -48,13 +48,14 @@ class mfixedassets extends CI_Model {
          a.Description2  COLLATE DATABASE_DEFAULT,CAST(a.Quantity as Decimal(18,2))   as Quantity ,a.Unit  COLLATE DATABASE_DEFAULT ,  CAST(a.ExcRate as Decimal(18,2))  as ExcRate  , CAST(a.AcquisitionCost as Decimal(18,2)) as AcquisitionCost  , CAST(a.DepreciationYear as Decimal(18,2)) as DepreciationYear  ,a.Department  COLLATE DATABASE_DEFAULT,a.Section  COLLATE DATABASE_DEFAULT,
 			b.LocationCode,b.ProductionLineCode,
 		
-		 a.SerialNo  COLLATE DATABASE_DEFAULT,iif(b.Print_Time < 1, NULL,b.Print_Time) as Print_Time  ,print_date ,c.userID + ' ( ' + c.userName + ' )' as userID ,'unchecked' as chk
+		 a.SerialNo  COLLATE DATABASE_DEFAULT,iif(b.Print_Time < 1, NULL,b.Print_Time) as Print_Time  ,print_date ,c.userID + ' ( ' + c.userName + ' )' as userID ,'unchecked' as chk, PhysicalTagNo as PhysicalTagNo
          FROM [192.168.2.8\SQLEXPRESS,41798].DBWarehouse.dbo.FixedAsset as a left join ttransaction_asset as b ON a.Asset COLLATE DATABASE_DEFAULT = b.asset COLLATE DATABASE_DEFAULT left join mdatauser as c ON b.userID = c.userID 
 		  where a.asset COLLATE DATABASE_DEFAULT not in (select d.Asset from tlowvalue_asset as d )
 )
 		SELECT 
          FinancialSite  as FinancialSite,
 		 SupplierName as SupplierName,
+         PhysicalTagNo as PhysicalTagNo,
 		 InvoiceRef as InvoiceRef,
 		 LocalOrImport as LocalOrImport,
 		 DocLink as DocLink,
@@ -112,7 +113,7 @@ class mfixedassets extends CI_Model {
          WHEN lower(left(a.LocalOrImport,6))='import' THEN 'Import'
          WHEN lower(left(a.LocalOrImport,5))='local' THEN 'Local'
          ELSE ''
-     END as LocalOrImport,DocLink,BCNo,CAST(AllocationDate AS DATE) as AllocationDate,ReferenceNo,COA,Asset,Description,
+     END as LocalOrImport,DocLink,BCNo,CAST(AllocationDate AS DATE) as AllocationDate,ReferenceNo,COA,Asset,PhysicalTagNo,Description,
          Description2,CAST(Quantity as Decimal(10,2)) as Quantity,Unit,ExcRate,AcquisitionCost,DepreciationYear,Department,Section,LocationCode,ProductionLineCode,SerialNo,b.Print_Time,print_date,userID,'unchecked' as chk
          FROM [192.168.2.8\SQLEXPRESS,41798].DBWarehouse.dbo.FixedAsset where Asset IN ($field2)  order by Asset asc" );
 

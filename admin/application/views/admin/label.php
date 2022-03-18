@@ -15,12 +15,12 @@ div {position:absolute; z-index:25}
 					a {text-decoration:none}
 					a img {border-style:none; border-width:0}
 					.fciepdoghnqao-0 {font-size:8pt;color:#000000;font-family:Calibri;font-weight:normal;}
-					.fciepdoghnqao-1 {font-size:7pt;color:#000000;font-family:Calibri;font-weight:bold;}
-					.fciepdoghnqao-2 {font-size:9pt;color:#ffffff;font-family:Calibri;font-weight:bold;}
+					.fciepdoghnqao-1 {font-size:6pt;color:#000000;font-family:Calibri;font-weight:bold;}
+					.fciepdoghnqao-2 {font-size:8pt;color:#ffffff;font-family:Calibri;font-weight:bold;}
 					.fciepdoghnqao-3 {font-size:6pt;color:#000000;font-family:Calibri;font-weight:normal;}
 					.fciepdoghnqao-4 {font-size:6pt;color:#ffffff;font-family:Calibri;font-weight:normal;}
 					.fciepdoghnqao-5 {font-size:6pt;color:#000000;font-family:Calibri;font-weight:bold;}
-					.fciepdoghnqao-6 {font-size:7pt;color:#000000;font-family:Calibri;font-weight:normal;}
+					.fciepdoghnqao-6 {font-size:5pt;color:#000000;font-family:Calibri;font-weight:normal;}
 					.adiepdoghnqao-0 {border-color:#000000;border-left-width:0;border-right-width:0;border-top-width:0;border-bottom-width:0;}
 					.adiepdoghnqao-1 {border-color:#000000;border-left-width:0;border-right-width:0;border-top-width:0;border-bottom-width:0;}
 				</style>
@@ -55,6 +55,7 @@ $(document).ready(function(){
 	$.each(data, function(i, item) {
 		
 			Asset = cstr(item.Asset);
+			PhysicalTagNo = cstr(item.PhysicalTagNo);
 			SerialNo = cstr(item.SerialNo);
 			LocalOrImport = cstr(item.LocalOrImport);
 			Description=cstr(item.Description);
@@ -80,7 +81,7 @@ $(document).ready(function(){
 			}
 			else
 			{tp=-5;bt=90;}
-			createqrcode(bt,tp,i,Asset,SerialNo,LocalOrImport,Description,Description2,newDepartment,Section,ds,Dates)
+			createqrcode(bt,tp,i,Asset,PhysicalTagNo,SerialNo,LocalOrImport,Description,Description2,newDepartment,Section,ds,Dates)
 			
 			i++;
          
@@ -133,16 +134,16 @@ $(document).ready(function(){
 
 
 });
-function createqrcode(bt,tp,i,Asset,SerialNo,LocalOrImport,Description,Description2,newDepartment,Section,ds,Dates)
+function createqrcode(bt,tp,i,Asset,PhysicalTagNo,SerialNo,LocalOrImport,Description,Description2,newDepartment,Section,ds,Dates)
 {
 	
 			s = '<table width="75px" height="105px"   style="margin-bottom:' + bt + 'px;margin-top:' + tp + 'px;" > <tr>' 
 			s = s + '<td>' 
 			
-			s = s + '<div id ="frame" style="margin-top:10px" > '
+			s = s + '<div id ="frame" style="margin-top:3px" > '
 			s = s + '<div title=" (DateTime)" class="adiepdoghnqao-1" style="top:86px;left:6px;width:77px;height:16px;text-align:center;"> '
 			s = s + '			<span align="center" class="fciepdoghnqao-0">' + Dates + '</span></div> '
-			s = s + '<div style="z-index:10;left:89px;width:145px;height:20px;border-color:#000000;border-style:solid;border-width:1px;background-color:#000000;layer-background-color:#000000;"> '
+			s = s + '<div style="z-index:10;left:89px;width:145px;height:15px;border-color:#000000;border-style:solid;border-width:1px;background-color:#000000;layer-background-color:#000000;"> '
 			s = s + '	<table width="138px" height="12px"> '
 			s = s + '	<tr> '
 			s = s + '	<td> '
@@ -156,17 +157,21 @@ function createqrcode(bt,tp,i,Asset,SerialNo,LocalOrImport,Description,Descripti
 			s = s + '<div style="z-index:10;left:7px;width:81px;height:81px;border-color:#000000;border-style:solid;border-width:1px;"> '
 			s = s + '	<table width="75px" height="75px"> '
 			s = s + '	<tr> '
-			s = s + '	<td> '
+			s = s + '	<td > '
 				
 				
-			s = s + '	<div title=" (String)" class="fciepdoghnqao-1" style="top:2px; left:84px;width:144px;height:17px;text-align:center;"> '
+			s = s + '	<div title=" (String)" class="fciepdoghnqao-1" style="top:2px; left:84px;width:144px;height:5px;text-align:center;"> '
 			s = s + '	<span align="center" class="fciepdoghnqao-2"  style="color:#ffffff;">' + Asset + '</span></div> '
 					
 			s = s + '	</td> '
 			s = s + '	</tr> '
+
 			s = s + '	</table> '
 			s = s + '</div> '
-			s = s + '<div style="padding-top:1px;font-size: 8px;line-height: 90%;z-index:10;top:20.5px;left:89px;width:145px;height:32px;border-color:#000000;border-style:solid;border-width:1px;">	 '
+			s = s + '<div style="padding-top:1px;text-align:center; font-size: 8px;line-height: 150%;z-index:2000;top:16px;left:89px;width:145px;height:15px;border-color:#000000;border-style:solid;border-width:1px;border-bottom-style: none;">	 '
+			s = s + '	<span class="fciepdoghnqao-2" style="color:#000000;">' + PhysicalTagNo + '</span>	 '
+			s = s + '</div>'
+			s = s + '<div style="padding-top:1px;font-size: 8px;line-height: 90%;z-index:10;top:30.5px;left:89px;width:145px;height:21px;border-color:#000000;border-style:solid;border-width:1px;">	 '
 			s = s + '	<span class="fciepdoghnqao-1">' + Description + '</span>	 '
 			s = s + '</div> '
 			

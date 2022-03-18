@@ -465,6 +465,7 @@ var arrLocName = [];
 										//alert(data.Asset);
 										//idsToSend.push("'" + data.Asset + "'");
 										var Asset = data.Asset;
+										var PhysicalTagNo = data.PhysicalTagNo;
 										var SerialNo = data.SerialNo;
 										var LocalOrImport = data.LocalOrImport;
 										var Description=data.Description;
@@ -477,6 +478,7 @@ var arrLocName = [];
 										var DS=newDepartment + ' - ' + Section;
 										idsToSend.push({
 											 Asset :  Asset.toString() ,
+											 PhysicalTagNo :  PhysicalTagNo.toString(),
 											 SerialNo: SerialNo ,
 											 LocalOrImport: LocalOrImport ,
 											 Description: Description ,
@@ -537,6 +539,7 @@ var arrLocName = [];
 						  attributes: { style: "text-align: center; font-size: 14px"},
 						  template: "<div style='text-align: center'><div style='text-align: center'><input name='chk' id='chk' class='chk' type='checkbox'  data-bind='checked: chk' #= chk ? checked=chk : '' #/></div>"},
 						  {field: "Asset",title: "FA Tag No",width: 200,headerAttributes: {style: "font-weight: bold"},headerAttributes: {style: "font-weight: bold"},editable: "false"},
+						  {field: "PhysicalTagNo",title: "Physical Tag No",width: 200,headerAttributes: {style: "font-weight: bold"},headerAttributes: {style: "font-weight: bold"},editable: "false"},
 						  {field: "Description",title: "FA Desc",width: 350,headerAttributes: {style: "font-weight: bold"},editable: "false"},
 						  {field: "LocationCode",title: "Loc Name",width: 200,headerAttributes: {style: "font-weight: bold;"},attributes: { "class": "bgcolor"},
 						
@@ -781,6 +784,7 @@ var arrLocName = [];
 																<select name="column" id="column" class="form-control input-sm pull-right" style="margin-top:0px">
 																	<option value="">Choice Column</option>
 																	<option value="a.Asset">FA Tag No</option>
+																	<option value="a.PhysicalTagNo">Physical Tag No</option>
 																	<option value="a.Description">FA Desc</option>
 																	<option value="a.SupplierName">Supplier Name</option>
 																	<option value="a.InvoiceRef">Supplier Invoice</option>
@@ -801,6 +805,7 @@ var arrLocName = [];
 																	<option value="a.Remark">Remark</option>
 																	
 																	
+																	
 																</select>
 																</span>
 																
@@ -816,6 +821,7 @@ var arrLocName = [];
 																	<option value="">On Site</option>
 																	<option value="L-MJL">Majalengka</option>
 																	<option value="M-SKB">Sukabumi</option>
+																	<option value="M-TGR">Tanggerang</option>
 																	
 																</select>
 																</span>
