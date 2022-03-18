@@ -468,6 +468,7 @@ var arrLocName = [];
 										var PhysicalTagNo = data.PhysicalTagNo;
 										var SerialNo = data.SerialNo;
 										var LocalOrImport = data.LocalOrImport;
+										var AllocationDate=data.AllocationDate;
 										var Description=data.Description;
 										var Description2=data.Description2;
 										var Department=data.Department;
@@ -479,6 +480,7 @@ var arrLocName = [];
 										idsToSend.push({
 											 Asset :  Asset.toString() ,
 											 PhysicalTagNo :  PhysicalTagNo.toString(),
+											 AllocationDate : AllocationDate,
 											 SerialNo: SerialNo ,
 											 LocalOrImport: LocalOrImport ,
 											 Description: Description ,

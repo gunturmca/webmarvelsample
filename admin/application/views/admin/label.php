@@ -54,6 +54,8 @@ $(document).ready(function(){
 	i=0;
 	$.each(data, function(i, item) {
 		
+    	var datse = new Date(cstr(item.AllocationDate));
+		let date = new Date( Date.parse(cstr(item.AllocationDate)) );
 			Asset = cstr(item.Asset);
 			PhysicalTagNo = cstr(item.PhysicalTagNo);
 			SerialNo = cstr(item.SerialNo);
@@ -62,7 +64,7 @@ $(document).ready(function(){
 			Description2=cstr(item.Description2);
 			Department=cstr(item.Department);
 			Section=cstr(item.Section)	;
-			Dates=formattedDate;
+			Dates=`${date.getDate()}-${date.toLocaleString('default', { month: 'short' })}-${date.getFullYear()}`;
 			newDepartment = Department.replaceAll('And','&');
 			
 			if (newDepartment !== '' && Section !== '')
